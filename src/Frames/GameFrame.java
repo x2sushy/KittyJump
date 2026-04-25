@@ -9,14 +9,17 @@ public class GameFrame{
 
     public GameFrame(){
         frame = new JFrame();
+        frame.setTitle("KittyJump");
     }
 
     public void init(){
-        frame.setSize(400,400);
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.CYAN);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         frame.setLayout(new BorderLayout());
-        frame.setLocationRelativeTo(null);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.add(panel);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }
