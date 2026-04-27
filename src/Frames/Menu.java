@@ -17,6 +17,7 @@ public class Menu{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridBagLayout());
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setBackground(Color.BLACK);
         JButton button = new JButton("Start");
         JButton button2 = new JButton("Exit");
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -35,7 +36,8 @@ public class Menu{
         panel.add(Box.createRigidArea(new Dimension(0, 30)));
         panel.add(button2);
         panel.add(Box.createVerticalGlue());
-        button.addActionListener(e -> {frame.dispose();
+        button.addActionListener(e -> {
+            frame.dispose();
             new GameFrame().init();
         });
         button2.addActionListener(e -> System.exit(0));

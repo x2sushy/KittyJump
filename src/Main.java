@@ -1,4 +1,3 @@
-import Frames.GameFrame;
 import Frames.Menu;
 
 public class Main {
