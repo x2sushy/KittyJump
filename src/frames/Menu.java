@@ -1,4 +1,4 @@
-package Frames;
+package frames;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,8 +37,9 @@ public class Menu{
         panel.add(button2);
         panel.add(Box.createVerticalGlue());
         button.addActionListener(e -> {
+            GameFrame gameFrame = new GameFrame();
             frame.dispose();
-            new GameFrame().init();
+            gameFrame.init();
         });
         button2.addActionListener(e -> System.exit(0));
         frame.add(panel);
