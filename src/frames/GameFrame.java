@@ -5,8 +5,6 @@ import java.awt.*;
 
 public class GameFrame extends JFrame{
 
-    private JFrame frame;
-
     public GameFrame(){
         this.setTitle("KittyJump");
     }

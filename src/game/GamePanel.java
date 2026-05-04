@@ -1,5 +1,7 @@
 package game;
 
+import controller.GameController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,9 +12,13 @@ public class GamePanel extends JPanel {
     //todo add platforms
     public GamePanel() {
         this.setBackground(Color.CYAN);
+        setOpaque(false);
+        setFocusable(true);
         this.player = new Player();
+        GameController controller = new GameController(player);
+        this.addKeyListener(controller);
         gameLoop = new Timer(16, e -> {
-            player.update();
+            player.update(16);
             repaint();
         });
         gameLoop.start();
