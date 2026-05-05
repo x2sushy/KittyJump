@@ -12,13 +12,12 @@ public class GamePanel extends JPanel {
     //todo add platforms
     public GamePanel() {
         this.setBackground(Color.CYAN);
-        setOpaque(false);
         setFocusable(true);
         this.player = new Player();
         GameController controller = new GameController(player);
         this.addKeyListener(controller);
         gameLoop = new Timer(16, e -> {
-            player.update(16);
+            player.update(getWidth(), getHeight());
             repaint();
         });
         gameLoop.start();

@@ -8,16 +8,27 @@ public class Player {
     private double y = 300;
     private double jumpSpeed = 0;
     private final double speed = 10;
-    private double gravity = 0.5;
+    private final double gravity = 0.5;
     private boolean isGoingLeft;
     private boolean isGoingRight;
 
-    public void update(double deltaT) {
+    public void update(int screenWidth, int screenHeight) {
         jumpSpeed += gravity;
         y += jumpSpeed;
-        if (y > 600) {
-            y = 600;
-            jumpSpeed = -12;
+        if (y > screenHeight) {
+            y = screenHeight - 40;
+            jumpSpeed = -20;
+        }
+        if (isGoingRight) {
+            x += (int) speed;
+        }
+        if (isGoingLeft) {
+            x -= (int) speed;
+        }
+        if (x > screenWidth) {
+            x = -40;
+        } else if (x < -40) {
+            x = screenWidth;
         }
     }
 
@@ -31,11 +42,11 @@ public class Player {
     }
 
     public double getVelocityY() {
-        return velocity;
+        return jumpSpeed;
     }
 
     public void jump() {
-        velocity = -12;
+        jumpSpeed = -12;
     }
 
     public void addX (int deltaX){
