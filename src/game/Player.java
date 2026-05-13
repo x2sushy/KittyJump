@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Player {
 
-    private int x = 400;
-    private double y = 300;
+    private int x;
+    private double y;
     private double jumpSpeed = 0;
     private final double speed = 10;
     private final double gravity = 0.5;
@@ -41,12 +41,12 @@ public class Player {
         return new Rectangle(x, (int)y, 40, 40);
     }
 
-    public double getVelocityY() {
+    public double getJumpSpeed() {
         return jumpSpeed;
     }
 
     public void jump() {
-        jumpSpeed = -12;
+        jumpSpeed = -20;
     }
 
     public void addX (int deltaX){
@@ -67,5 +67,10 @@ public class Player {
 
     public boolean isGoingRight() {
         return isGoingRight;
+    }
+
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }
