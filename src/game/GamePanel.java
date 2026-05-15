@@ -36,10 +36,10 @@ public class GamePanel extends JPanel {
     private void initializeGame(int width, int height) {
         player.setPosition(width / 2 - 20, height / 2 - 100);
 //        platforms.add(new Platform(width / 2 - 40, height - 150));
-//        platforms.add(new Platform(width / 2 - 150, height - 300));
-        platforms.add(new Platform(width / 2 + 100, height - 300));
-        platforms.add(new Platform(width / 2 - 50,  height - 600));
-        platforms.add(new Platform(width / 2 + 150, height - 900));
+        platforms.add(new Platform(width / 2 - 150, height - 800));
+        platforms.add(new Platform(width / 2 + 100, height - 200));
+        platforms.add(new Platform(width / 2 - 50,  height - 400));
+        platforms.add(new Platform(width / 2 + 150, height - 600));
     }
 
     private void checkCollisions() {

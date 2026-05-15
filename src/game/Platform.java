@@ -1,13 +1,15 @@
 package game;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Platform {
 
     private int x;
     private int y;
-    private static int width = 80;
-    private static int height = 20;
+    private int width = 80;
+    private int height = 20;
+    private Image image = new ImageIcon("res/New Piskel-1.png.png").getImage();
 
     public Platform(int x, int y){
         this.x = x;
@@ -15,8 +17,9 @@ public class Platform {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.ORANGE);
-        g.fillRect(x, y, width, height);
+        g.drawImage(image,x,y,width,height,null);
+//        g.setColor(Color.ORANGE);
+//        g.fillRect(x, y, width, height);
     }
 
     // secret for rectangle collision

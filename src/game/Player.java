@@ -17,7 +17,7 @@ public class Player {
         y += jumpSpeed;
         if (y > screenHeight) {
             y = screenHeight - 40;
-            jumpSpeed = -20;
+            jumpSpeed = -15;
         }
         if (isGoingRight) {
             x += (int) speed;
@@ -46,11 +46,7 @@ public class Player {
     }
 
     public void jump() {
-        jumpSpeed = -20;
-    }
-
-    public void addX (int deltaX){
-        this.x += deltaX;
+        jumpSpeed = -15;
     }
 
     public void setGoingRight(boolean goingRight) {
@@ -59,14 +55,6 @@ public class Player {
 
     public void setGoingLeft(boolean goingLeft) {
         isGoingLeft = goingLeft;
-    }
-
-    public boolean isGoingLeft() {
-        return isGoingLeft;
-    }
-
-    public boolean isGoingRight() {
-        return isGoingRight;
     }
 
     public void setPosition(int x, int y) {
