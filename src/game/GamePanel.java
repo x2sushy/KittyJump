@@ -27,6 +27,7 @@ public class GamePanel extends JPanel {
             if (initialized) {
                 player.update(getWidth(), getHeight());
                 checkCollisions();
+                cameraUpdate();
             }
             repaint();
         });
@@ -35,7 +36,7 @@ public class GamePanel extends JPanel {
 
     private void initializeGame(int width, int height) {
         player.setPosition(width / 2 - 20, height / 2 - 100);
-//        platforms.add(new Platform(width / 2 - 40, height - 150));
+        platforms.add(new Platform(width / 2 - 40, height - 1000));
         platforms.add(new Platform(width / 2 - 150, height - 800));
         platforms.add(new Platform(width / 2 + 100, height - 200));
         platforms.add(new Platform(width / 2 - 50,  height - 400));
@@ -50,6 +51,26 @@ public class GamePanel extends JPanel {
                     player.jump();
                     break;
                 }
+            }
+        }
+    }
+
+    private void cameraUpdate(){
+        int cameraLine = (int) (getHeight() * 0.4);
+        if (player.getY() < cameraLine) {
+            int shift = (int) (cameraLine - player.getY());
+            player.setY(cameraLine);
+            for (Platform p : platforms) {
+                p.setY(p.getY() + shift);
+            }
+        }
+        for (int i = platforms.size() - 1; i >= 0; i--) {
+            Platform p = platforms.get(i);
+            if (p.getY() > getHeight()) {
+                platforms.remove(i);
+                int newX = (int) (Math.random() * (getWidth() - 80));
+                int newY = (int) (Math.random() * -100);
+                platforms.add(new Platform(newX, newY));
             }
         }
     }
