@@ -15,10 +15,6 @@ public class Player {
     public void update(int screenWidth, int screenHeight) {
         jumpSpeed += gravity;
         y += jumpSpeed;
-        if (y > screenHeight) {
-            y = screenHeight - 40;
-            jumpSpeed = -15;
-        }
         if (isGoingRight) {
             x += (int) speed;
         }

@@ -15,7 +15,7 @@ public class GameFrame extends JFrame{
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(new GridBagLayout());
         this.getContentPane().setBackground(Color.DARK_GRAY);
-        GamePanel panel = new GamePanel();
+        GamePanel panel = new GamePanel(this);
         panel.setPreferredSize(new Dimension(600, 800));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.VERTICAL;

@@ -1,6 +1,7 @@
 package game;
 
 import controller.GameController;
+import frames.GameOverFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +12,13 @@ public class GamePanel extends JPanel {
     private Timer gameLoop;
     private ArrayList<Platform> platforms;
     private boolean initialized = false;
-    public static final int width = 600;
+    private final int width = 600;
+    private int score = 0;
+    private int highScore = 0;
+    private JFrame parent;
 
-    public GamePanel() {
+    public GamePanel(JFrame parent) {
+        this.parent = parent;
         this.setBackground(Color.CYAN);
         setFocusable(true);
         this.player = new Player();
@@ -29,6 +34,14 @@ public class GamePanel extends JPanel {
                 player.update(width, getHeight());
                 checkCollisions();
                 update();
+                if (player.getY()>getHeight()){
+                    gameLoop.stop();
+                    if (score>=highScore){
+                        highScore = score;
+                    }
+                    parent.dispose();
+                    new GameOverFrame().init();
+                }
             }
             repaint();
         });
@@ -66,6 +79,7 @@ public class GamePanel extends JPanel {
             for (Platform p : platforms) {
                 p.setY(p.getY() + shift);
             }
+            score += shift;
         }
         int highestY = Integer.MAX_VALUE;
         for (Platform p : platforms) {
@@ -93,5 +107,8 @@ public class GamePanel extends JPanel {
             p.draw(g);
         }
         player.draw(g);
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Arial", Font.BOLD, 24));
+        g.drawString("Score: " + score, 20, 40);
     }
 }
