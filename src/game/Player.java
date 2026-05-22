@@ -12,7 +12,7 @@ public class Player {
     private boolean isGoingLeft;
     private boolean isGoingRight;
 
-    public void update(int screenWidth, int screenHeight) {
+    public void update(int screenWidth) {
         jumpSpeed += gravity;
         y += jumpSpeed;
         if (isGoingRight) {

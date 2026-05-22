@@ -9,12 +9,11 @@ import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
     private Player player;
-    private Timer gameLoop;
+    private Timer timer;
     private ArrayList<Platform> platforms;
     private boolean initialized = false;
     private final int width = 600;
     private int score = 0;
-    private int highScore = 0;
     private JFrame parent;
 
     public GamePanel(JFrame parent) {
@@ -25,34 +24,31 @@ public class GamePanel extends JPanel {
         this.platforms = new ArrayList<>();
         GameController controller = new GameController(player);
         this.addKeyListener(controller);
-        gameLoop = new Timer(16, e -> {
+        timer = new Timer(16, e -> {
             if (!initialized && width > 0) {
                 initializeGame(getHeight());
                 initialized = true;
             }
             if (initialized) {
-                player.update(width, getHeight());
+                player.update(width);
                 checkCollisions();
                 update();
                 if (player.getY()>getHeight()){
-                    gameLoop.stop();
-                    if (score>=highScore){
-                        highScore = score;
-                    }
+                    timer.stop();
                     parent.dispose();
-                    new GameOverFrame().init();
+                    new GameOverFrame(score).init();
                 }
             }
             repaint();
         });
-        gameLoop.start();
+        timer.start();
     }
 
     private void initializeGame(int height) {
         player.setPosition(width / 2 - 20, height / 2 - 100);
         platforms.add(new Platform(width / 2 - 40, height - 1000));
         platforms.add(new Platform(width / 2 - 150, height - 800));
-        platforms.add(new Platform(width / 2 + 100, height - 200));
+        platforms.add(new Platform(width / 2 + 100, height));
         platforms.add(new Platform(width / 2 - 50,  height - 400));
         platforms.add(new Platform(width / 2 + 150, height - 600));
         platforms.add(new Platform(width / 2 + 100, height - 1200));

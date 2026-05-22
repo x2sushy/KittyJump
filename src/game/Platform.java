@@ -18,11 +18,9 @@ public class Platform {
 
     public void draw(Graphics g) {
         g.drawImage(image,x,y,width,height,null);
-//        g.setColor(Color.ORANGE);
-//        g.fillRect(x, y, width, height);
     }
 
-    // secret for rectangle collision
+    // secret for rectangle collision from AI
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
     }
