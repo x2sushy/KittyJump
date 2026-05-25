@@ -45,6 +45,12 @@ public class Player {
         jumpSpeed = -15;
     }
 
+
+
+    public void tripleJump(){
+        jumpSpeed = -15*1.7;
+    }
+
     public void setGoingRight(boolean goingRight) {
         isGoingRight = goingRight;
     }

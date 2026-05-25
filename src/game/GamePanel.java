@@ -31,6 +31,9 @@ public class GamePanel extends JPanel {
             }
             if (initialized) {
                 player.update(width);
+                for (Platform p : platforms) {
+                    p.update(width);
+                }
                 checkCollisions();
                 update();
                 if (player.getY()>getHeight()){
@@ -59,8 +62,15 @@ public class GamePanel extends JPanel {
         if (player.getJumpSpeed() > 0) {
             Rectangle playerBounds = player.getBounds();
             for (Platform p : platforms) {
-                if (playerBounds.intersects(p.getBounds())) {
+                if (p.getPowerUp() != null && p.getPowerUp().getType().equals("SPRING") && playerBounds.intersects(p.getPowerUp().getBounds())) {
+                    player.tripleJump();
+                    break;
+                }else if (playerBounds.intersects(p.getBounds())) {
                     player.jump();
+                    if (p.isFragile()) {
+                        platforms.remove(p);
+                        platforms.add(new Platform(width / 2 - 40, getHeight() + 20));
+                    }
                     break;
                 }
             }
@@ -75,7 +85,7 @@ public class GamePanel extends JPanel {
             for (Platform p : platforms) {
                 p.setY(p.getY() + shift);
             }
-            score += shift;
+            score += shift/10;
         }
         int highestY = Integer.MAX_VALUE;
         for (Platform p : platforms) {
@@ -90,7 +100,17 @@ public class GamePanel extends JPanel {
                 int newX = (int) (Math.random() * (width - 80));
                 int gap = 125 + (int)(Math.random() * 100);
                 int newY = highestY - gap;
-                platforms.add(new Platform(newX, newY));
+                Platform newPlatform = new Platform(newX, newY);
+                int chance = (int)(Math.random() * 100);
+                if (chance < 10) {
+                    newPlatform.setFragile(true);
+                } else if (chance < 25) {
+                    newPlatform.setMoving(true);
+                } else if (chance < 30) {
+                    PowerUp spring = new PowerUp(newX + 80 / 2 - 10, newY - 10, "SPRING");
+                    newPlatform.setPowerUp(spring);
+                }
+                platforms.add(newPlatform);
                 highestY = newY;
             }
         }
