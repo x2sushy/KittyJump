@@ -1,5 +1,6 @@
 package game;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class PowerUp {
@@ -9,6 +10,7 @@ public class PowerUp {
     private int width = 20;
     private int height = 10;
     private String type;
+    private Image spring = new ImageIcon("res/spring.png").getImage();
 
     public PowerUp(int x, int y, String type){
         this.x = x;
@@ -38,8 +40,7 @@ public class PowerUp {
 
     public void draw(Graphics g){
         if (type.equals("SPRING")) {
-            g.setColor(Color.RED);
-            g.fillRect(x, y, width, height);
+            g.drawImage(spring, x, y, width, height, null);
         }
     }
 

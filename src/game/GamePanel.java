@@ -14,10 +14,9 @@ public class GamePanel extends JPanel {
     private boolean initialized = false;
     private final int width = 600;
     private int score = 0;
-    private JFrame parent;
+    private Image background = new ImageIcon("res/background.png").getImage();
 
     public GamePanel(JFrame parent) {
-        this.parent = parent;
         this.setBackground(Color.CYAN);
         setFocusable(true);
         this.player = new Player();
@@ -119,6 +118,14 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if (background != null) {
+            int bgHeight = background.getHeight(null);
+            if (bgHeight > 0) {
+                for (int y = 0; y < getHeight(); y += bgHeight) {
+                    g.drawImage(background, 0, y, width, bgHeight, null);
+                }
+            }
+        }
         for (Platform p : platforms) {
             p.draw(g);
         }

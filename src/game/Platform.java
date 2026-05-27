@@ -9,7 +9,9 @@ public class Platform {
     private int y;
     private int width = 80;
     private int height = 20;
-    private Image image = new ImageIcon("res/New Piskel-1.png.png").getImage();
+    private Image platform = new ImageIcon("res/platform.png").getImage();
+    private Image movingPlatform = new ImageIcon("res/movingplatform.png").getImage();
+    private Image brokenPlatform = new ImageIcon("res/brokenplatform.png").getImage();
     private PowerUp powerUp = null;
     private boolean isFragile = false;
     private boolean isMoving = false;
@@ -22,13 +24,11 @@ public class Platform {
 
     public void draw(Graphics g) {
         if (isFragile) {
-            g.setColor(new Color(139, 69, 19));
-            g.fillRect(x, y, width, height);
+            g.drawImage(brokenPlatform, x, y, width, height, null);
         } else if (isMoving) {
-            g.setColor(Color.BLUE);
-            g.fillRect(x, y, width, height);
+            g.drawImage(movingPlatform, x, y, width, height, null);
         } else {
-            g.drawImage(image, x, y, width, height, null);
+            g.drawImage(platform, x, y, width, height, null);
         }
         if (powerUp != null) {
             powerUp.draw(g);
