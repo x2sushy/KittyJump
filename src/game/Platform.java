@@ -17,11 +17,20 @@ public class Platform {
     private boolean isMoving = false;
     private int speed = 3;
 
+    /**
+     * Constructs a new Platform at the specified coordinates.
+     * @param x the x-coordinate
+     * @param y the y-coordinate
+     */
     public Platform(int x, int y){
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Draws the platform and its power-up if it has one.
+     * @param g the Graphics object
+     */
     public void draw(Graphics g) {
         if (isFragile) {
             g.drawImage(brokenPlatform, x, y, width, height, null);
@@ -35,6 +44,10 @@ public class Platform {
         }
     }
 
+    /**
+     * Updates the platform's position if it is a moving platform.
+     * @param screenWidth the width of the game screen
+     */
     public void update(int screenWidth) {
         if (isMoving) {
             x += speed;
@@ -48,7 +61,11 @@ public class Platform {
         }
     }
 
-    // secret for rectangle collision from AI
+    /**
+     * AI advised me to use rectangle to check for collisions.
+     * Returns the rectangle of the platform for collision detection.
+     * @return a Rectangle representing the platform's bounds
+     */
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
     }
@@ -57,6 +74,10 @@ public class Platform {
         return y;
     }
 
+    /**
+     * Sets the y-coordinate of the platform and updates its power-up's position if it has one.
+     * @param y the new y-coordinate
+     */
     public void setY(int y) {
         int shift = y - this.y;
         this.y = y;
@@ -79,10 +100,6 @@ public class Platform {
 
     public void setFragile(boolean fragile) {
         isFragile = fragile;
-    }
-
-    public boolean isMoving() {
-        return isMoving;
     }
 
     public void setMoving(boolean moving) {

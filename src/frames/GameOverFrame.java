@@ -3,16 +3,26 @@ package frames;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The frame displayed when the player loses the game, showing the final score and options to restart or go to menu.
+ */
 public class GameOverFrame extends JFrame {
 
     private JFrame frame;
     private int finalScore;
 
+    /**
+     * Constructs a new GameOverFrame.
+     * @param score the final score achieved by the player
+     */
     public GameOverFrame(int score){
         frame = new JFrame();
         this.finalScore = score;
     }
 
+    /**
+     * Initializes the game over frame with the final score and action buttons.
+     */
     public void init(){
         this.setTitle("Game Over");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * The main game panel where the game logic is.
+ */
 public class GamePanel extends JPanel {
     private Player player;
     private Timer timer;
@@ -16,6 +19,10 @@ public class GamePanel extends JPanel {
     private int score = 0;
     private Image background = new ImageIcon("res/background.png").getImage();
 
+    /**
+     * Constructs a new GamePanel, initializes the player and controller, and starts the game timer.
+     * @param parent the JFrame that contains this panel
+     */
     public GamePanel(JFrame parent) {
         this.setBackground(Color.CYAN);
         setFocusable(true);
@@ -46,6 +53,10 @@ public class GamePanel extends JPanel {
         timer.start();
     }
 
+    /**
+     * Initializes the game by positioning the player and creating the first set of platforms.
+     * @param height the height of the panel
+     */
     private void initializeGame(int height) {
         player.setPosition(width / 2 - 20, height / 2 - 100);
         platforms.add(new Platform(width / 2 - 40, height - 1000));
@@ -57,6 +68,9 @@ public class GamePanel extends JPanel {
         platforms.add(new Platform(width / 2 - 150, height - 1400));
     }
 
+    /**
+     * Checks for collisions between the player and platforms or power-ups.
+     */
     private void checkCollisions() {
         if (player.getJumpSpeed() > 0) {
             Rectangle playerBounds = player.getBounds();
@@ -76,6 +90,9 @@ public class GamePanel extends JPanel {
         }
     }
 
+    /**
+     * Updates the game state, including scrolling the camera and generating new platforms.
+     */
     private void update(){
         int cameraLine = (int) (getHeight() * 0.4);
         if (player.getY() < cameraLine) {
@@ -115,6 +132,10 @@ public class GamePanel extends JPanel {
         }
     }
 
+    /**
+     * Paints the background, platforms, player, and current score.
+     * @param g the Graphics object
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
