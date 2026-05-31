@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="KittyJump:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/KittyJump_jar</output-path>
+    <root id="archive" name="KittyJump.jar">
+      <element id="module-output" name="KittyJump" />
+    </root>
+  </artifact>
+</component>
